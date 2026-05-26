@@ -48,7 +48,6 @@ public class CreateCuponUseCase implements CreateCuponInPort {
                 .fecha_Vencimiento(cupon.getFecha_Vencimiento())
                 .publicado(cupon.isPublicado())
                 .activado(true)
-                .redimido(false)
                 .build();
 
 
