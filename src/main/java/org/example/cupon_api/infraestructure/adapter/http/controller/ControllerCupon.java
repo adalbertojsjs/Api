@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @RequiredArgsConstructor
@@ -33,6 +34,8 @@ public class ControllerCupon {
     private final PublicarCuponUseCase publicarCuponUseCase;
 
     private  final ActualizarDescuentoUseCase actualizarDescuentoUseCase;
+
+    private  final  ExtenderVencimientoUseCase extenderVencimientoUseCase;
 
 
     @Operation(summary = "Cupon por ID")
@@ -125,6 +128,31 @@ public class ControllerCupon {
             @PathVariable UUID id){
 
         return ResponseEntity.ok(publicarCuponUseCase.publicar(id));
+    }
+
+
+    @Operation(
+            summary = "Extender vencimiento",
+            description = "Extiende la fecha de vencimiento de un cupón."
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Fecha actualizada"),
+            @ApiResponse(responseCode = "400", description = "Datos inválidos"),
+            @ApiResponse(responseCode = "404", description = "Cupón no encontrado")
+    })
+    @PatchMapping("/{id}/extender-vencimiento")
+    public ResponseEntity<Cupon> extenderVencimiento(
+
+            @Parameter(description = "ID del cupón")
+            @PathVariable UUID id,
+
+            @Parameter(description = "Nueva fecha", example = "2026-08-30")
+            @RequestParam LocalDate nuevaFecha
+    ){
+
+        return ResponseEntity.ok(
+                extenderVencimientoUseCase.extenderFecha(id, nuevaFecha)
+        );
     }
 
 

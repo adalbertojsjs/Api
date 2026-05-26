@@ -3,6 +3,7 @@ package org.example.cupon_api.application;
 
 import lombok.RequiredArgsConstructor;
 import org.example.cupon_api.domain.model.Cupon;
+import org.example.cupon_api.domain.port.in.ExtenderVencimientoInPort;
 import org.example.cupon_api.domain.port.out.RepositoryCuponOutPort;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +14,7 @@ import static java.util.Objects.isNull;
 
 @Component
 @RequiredArgsConstructor
-public class ExtenderVencimientoUseCase {
+public class ExtenderVencimientoUseCase implements ExtenderVencimientoInPort {
 
 
     private final RepositoryCuponOutPort repositoryCuponOutPort;
