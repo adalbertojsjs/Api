@@ -29,8 +29,9 @@ public class CreateCuponUseCase implements CreateCuponInPort {
 
         }
             if (cupon.getDescuento().compareTo(BigDecimal.valueOf(0.5)) < 0) {
-            throw new IllegalArgumentException("El descuento mínimo es 0.5");
+            throw new IllegalArgumentException("El descuento mínimo es 5%");
         }
+
         if (cupon.getFecha_Vencimiento().isBefore(LocalDate.now())) {
             throw new IllegalArgumentException("La fecha de expiración no puede estar en el pasado");
         }
@@ -65,7 +66,7 @@ public class CreateCuponUseCase implements CreateCuponInPort {
 
                 }
 
-                return codigoLimpio.substring(0, 6).toUpperCase().trim();
+                return codigoLimpio.substring(0, 4).toUpperCase().trim().concat("2026");
             }
     }
 

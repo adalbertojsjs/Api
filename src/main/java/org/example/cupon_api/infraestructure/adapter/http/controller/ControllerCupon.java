@@ -142,7 +142,6 @@ public class ControllerCupon {
     })
     @PatchMapping("/{id}/extender-vencimiento")
     public ResponseEntity<Cupon> extenderVencimiento(
-
             @Parameter(description = "ID del cupón")
             @PathVariable UUID id,
 

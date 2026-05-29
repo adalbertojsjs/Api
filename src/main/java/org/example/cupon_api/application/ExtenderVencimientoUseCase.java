@@ -1,6 +1,7 @@
 package org.example.cupon_api.application;
 
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.example.cupon_api.domain.model.Cupon;
 import org.example.cupon_api.domain.port.in.ExtenderVencimientoInPort;
@@ -12,6 +13,7 @@ import java.util.UUID;
 
 import static java.util.Objects.isNull;
 
+@Transactional
 @Component
 @RequiredArgsConstructor
 public class ExtenderVencimientoUseCase implements ExtenderVencimientoInPort {
@@ -20,6 +22,7 @@ public class ExtenderVencimientoUseCase implements ExtenderVencimientoInPort {
     private final RepositoryCuponOutPort repositoryCuponOutPort;
 
 
+    @Transactional
     public Cupon extenderFecha(UUID id, LocalDate nuevaFecha){
 
         if (isNull(id)) {
